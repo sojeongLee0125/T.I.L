@@ -25,17 +25,6 @@ public static Boolean valueOf(boolean b) {
 - 불변 클래스는 인스턴스를 미리 만들어 두거나 새로 생성한 인스턴스를 캐싱해 재활용하는 식으로 불필요한 객체 생성을 피할 수 있다. 
 - 매개변수 별로 각기 다른 리턴 값을 리턴할 수 있다. 
 
-> 플라이웨이트 패턴 
-> - 어떤 클래스의 인스턴스 하나로 여러 개의 ‘가상 인스턴스’를 제공하는 패턴 
-> - 어떤 클래스의 인스턴스가 아주 많이 필요하지만 모두 똑같은 방식으로 제어해야 할 때 유용하게 쓰인다. 
-> - 반복되는 요청에 같은 객체를 반환하는 식으로 인스턴스 활성화를 통제하는 것을 인스턴스 통제(instance-control) 클래스라고 한다.
-
-> 인스턴스를 통제하는 이유
-> - 싱글톤으로 만들 수 있다. 
-> - 인스턴스화 불가(noninstantiable)로 만들 수 있다. 
-> - 불변 값 클래스에서 동치인 인스턴스가 하나뿐임을 보장한다.
-> - 열거 타입은 인스턴스가 하나만 만들어짐을 보장해준다.
-
 3. 반환 타입의 하위 타입 객체를 반환할 수 있다. 
 - 반환할 객체의 클래스를 자유롭게 선택할 수 있는 유연성을 제공한다. 
 - API를 만들 때 구현 클래스를 공개하지 않고도 그 객체를 반환할 수 있어 API를 작게 구현 할 수 있다. 
@@ -49,9 +38,6 @@ public static Boolean valueOf(boolean b) {
   2. 제공자가 구현체를 등록할 때 사용하는 제공자 등록 API(provider registration API)
   3. 클라이언트가 서비스의 인스턴스를 얻을 때 사용하는 서비스 접근 API(service access API)
   4. 서비스 제공자 인터페이스(service provider interface) : 서비스 인터페이스의 인스턴스를 생성하는 팩토리 객체를 설명해 줌.
-  > 유연한 정적 팩토리 
-  > - 클라이언트는 서비스 접근 API를 사용할 때 원하는 구현체의 조건을 명시할 수 있다. 
-  > - 조건을 명시하지 않으면 기본 구현체를 반환하거나 지원하는 구현체들을 돌아가며 반환한다.
 
 #### 단점
 
@@ -66,13 +52,7 @@ public static Boolean valueOf(boolean b) {
 4. instance 혹은 getInstance : 매개변수로 명시한 인스턴스를 반환하지만, 같은 인스턴스임을 보장하지 않는다.
 5. create 혹은 newInstance : instance 혹은 getInstance와 같지만, 매번 새로운 인스턴스를 생성해 반환함을 보장한다.
 6. getType : getInstance와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩토리 메서드를 정의할 때 쓴다.
-```
-FileStore fs = Files.getFileStore(path);
-```
 7. newType : newInstance와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩토리 메서드를 정의할 때 쓴다.
-```
-BufferedReader br = Files.newBufferedReader(path);
-```
 8. type : getType과 newType의 간결한 버전
 
 ### 핵심
